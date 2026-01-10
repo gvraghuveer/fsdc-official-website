@@ -5,67 +5,60 @@ import PageTransition from "../components/PageTransition";
 import { Cpu, Code, Eye, Rocket, Terminal, Globe, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Helper component for scroll-triggered reveal
+// Full Helper component for scroll-triggered reveal
 const RevealOnScroll = ({ children, delay = "0ms" }) => {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(domRef.current); // Only animate once
-        }
-      });
-    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
-
-    observer.observe(domRef.current);
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(domRef.current);
+      }
+    }, { threshold: 0.1 });
+    if (domRef.current) observer.observe(domRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div
-      ref={domRef}
-      style={{ transitionDelay: delay }}
-      className={`transition-all duration-1000 transform ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
-      }`}
-    >
+    <div ref={domRef} style={{ transitionDelay: delay }}
+      className={`transition-all duration-1000 transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
       {children}
     </div>
   );
 };
 
 const HomePage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => { 
+    window.scrollTo(0, 0); 
   }, []);
 
   return (
     <PageTransition>
       <div className="relative min-h-screen bg-[#050505] overflow-x-hidden">
-        {/* --- BACKGROUND --- */}
+        {/* --- BACKGROUND LAYER --- */}
         <div className="fixed inset-0 z-0">
-          <Aurora
-            colorStops={["#38035e", "#1a0b33", "#050505"]}
-            blend={0.6}
-            amplitude={1.1}
-            speed={1.8}
+          <Aurora 
+            colorStops={["#38035e", "#1a0b33", "#050505"]} 
+            blend={0.6} 
+            amplitude={1.1} 
+            speed={1.8} 
           />
         </div>
 
         <div className="relative z-10">
-          {/* --- HERO SECTION (Standard Load) --- */}
-          <section className="min-h-[95vh] flex flex-col items-center justify-center text-center px-4 pt-32 pb-10">
+          {/* --- HERO SECTION --- */}
+          <section className="min-h-[100dvh] flex flex-col items-center justify-center text-center px-6 pt-40 pb-20">
             <RevealOnScroll delay="100ms">
-              <div className="mb-6 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[10px] uppercase tracking-[0.4em] text-purple-400 font-bold backdrop-blur-sm">
+              <div className="mb-8 px-5 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-[10px] uppercase tracking-[0.4em] text-purple-400 font-bold backdrop-blur-sm inline-block">
                 Learn • Create • Explore
               </div>
             </RevealOnScroll>
 
             <RevealOnScroll delay="300ms">
-              <h1 className="text-[44px] sm:text-6xl md:text-8xl font-black tracking-tighter sm:tracking-tighter leading-[1.1] sm:leading-none mb-8 italic uppercase text-white">
+              {/* Added px-4 and leading-[1.2] to stop character clipping */}
+              <h1 className="px-4 text-[42px] sm:text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[1.2] sm:leading-[1.1] mb-8 uppercase text-white">
                 FULL STACK <br />
                 <span className="bg-gradient-to-r from-white via-purple-200 to-purple-500 bg-clip-text text-transparent">
                   DEVELOPMENT CLUB
@@ -74,24 +67,24 @@ const HomePage = () => {
             </RevealOnScroll>
 
             <RevealOnScroll delay="500ms">
-              <p className="max-w-xl text-gray-400 text-sm md:text-base mb-12 leading-relaxed font-medium">
+              <p className="max-w-2xl text-gray-400 text-sm md:text-base mb-12 leading-relaxed font-medium mx-auto">
                 We speak Full Stack fluently. Join a community of passionate developers building the digital future one line of code at a time.
               </p>
             </RevealOnScroll>
 
             <RevealOnScroll delay="700ms">
-              <div className="flex flex-col md:flex-row gap-6">
-                <Link to="/team" className="px-10 py-4 rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase text-[10px] font-bold tracking-widest text-white flex items-center gap-2 group">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <Link to="/team" className="w-full sm:w-auto px-10 py-4 rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase text-[10px] font-bold tracking-widest text-white flex items-center justify-center gap-2 group">
                   Our Team <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link to="/events" className="px-14 py-4 rounded-full bg-purple-600 shadow-[0_0_30px_rgba(147,51,234,0.3)] hover:bg-purple-500 transition-all uppercase text-[10px] font-bold tracking-widest text-white">
+                <Link to="/events" className="w-full sm:w-auto px-14 py-4 rounded-full bg-purple-600 shadow-[0_0_30px_rgba(147,51,234,0.3)] hover:bg-purple-500 transition-all uppercase text-[10px] font-bold tracking-widest text-white flex items-center justify-center">
                   Events
                 </Link>
               </div>
             </RevealOnScroll>
           </section>
 
-          {/* --- ABOUT US (Reveals on Scroll) --- */}
+          {/* --- ABOUT US SECTION --- */}
           <section className="py-32 px-6 md:px-24">
             <RevealOnScroll>
               <div className="text-center mb-20">
@@ -107,7 +100,7 @@ const HomePage = () => {
             </div>
           </section>
 
-          {/* --- WHAT WE DO (Reveals on Scroll) --- */}
+          {/* --- WHAT WE DO SECTION --- */}
           <section className="py-32 px-6 md:px-24 border-t border-white/5 bg-white/[0.01]">
             <div className="max-w-6xl mx-auto">
               <RevealOnScroll>
@@ -125,12 +118,11 @@ const HomePage = () => {
             </div>
           </section>
 
-          {/* --- CTA SECTION (Reveals on Scroll) --- */}
+          {/* --- CTA SECTION --- */}
           <section className="relative z-10 py-40 px-6 md:px-24">
             <RevealOnScroll>
               <div className="max-w-6xl mx-auto bg-gradient-to-br from-purple-900/30 via-black to-black border border-white/10 rounded-[40px] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden relative group">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-purple-600/20 blur-[100px] rounded-full group-hover:bg-purple-600/30 transition-colors" />
-                
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-purple-600/20 blur-[100px] rounded-full group-hover:bg-purple-600/30 transition-colors pointer-events-none" />
                 <div className="relative z-10 max-w-md text-center md:text-left">
                   <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 leading-none italic uppercase text-white">Ready to Build the Future?</h2>
                   <Link to="/contact" className="inline-block px-10 py-5 bg-purple-600 rounded-full font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-purple-500 transition-all shadow-[0_10px_40px_rgba(147,51,234,0.4)] text-white">

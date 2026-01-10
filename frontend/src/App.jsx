@@ -29,7 +29,7 @@ function App() {
         <ScrollToTop />
         
         <NavBar />
-
+        
         <main className="flex-grow">
           <AnimatedRoutes />
         </main>

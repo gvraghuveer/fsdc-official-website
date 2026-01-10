@@ -176,7 +176,7 @@ const Footer = () => {
         {/* COPYRIGHT BAR */}
         <div className="pt-8 border-t border-white/5 flex flex-col-reverse md:flex-row justify-between items-center gap-6">
           <p className="text-gray-600 text-[9px] uppercase tracking-[0.4em] font-bold text-center">
-            © {currentYear} FSDC REVA UNIVERSITY • ALL RIGHTS RESERVED
+            &copy; {currentYear} FSDC REVA UNIVERSITY • ALL RIGHTS RESERVED
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8">
             <a
