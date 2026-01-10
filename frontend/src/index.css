@@ -11,7 +11,9 @@
 }
 
 /* 1. PERMANENT WHITE FLASH FIX */
-html, body, #root {
+html,
+body,
+#root {
   background-color: #050505 !important;
   margin: 0;
   padding: 0;
@@ -21,8 +23,12 @@ html, body, #root {
 
 /* 2. SKELETON SHIMMER ANIMATION */
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .animate-shimmer {
@@ -32,15 +38,33 @@ html, body, #root {
 }
 
 /* 3. SWIPER CUSTOMIZATION */
-.team-swiper .swiper-button-next, 
+.team-swiper .swiper-button-next,
 .team-swiper .swiper-button-prev {
   color: #a855f7 !important;
   transform: scale(0.6);
 }
 
-.team-swiper .swiper-pagination-bullet { background: #333; }
-.team-swiper .swiper-pagination-bullet-active { background: #a855f7; }
+.team-swiper .swiper-pagination-bullet {
+  background: #333;
+}
+.team-swiper .swiper-pagination-bullet-active {
+  background: #a855f7;
+}
 
+.team-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.team-swiper .swiper-pagination-bullet-active {
+  width: 32px;
+  background: #a855f7;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+}
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -52,7 +76,6 @@ html, body, #root {
   background: #38035e;
   border-radius: 10px;
 }
-
 
 /* ProfileCard */
 @layer utilities {
@@ -88,6 +111,6 @@ html, body, #root {
 
 /* Specifically for images to prevent the "blue ghost" drag effect */
 img {
-  user-drag: none;
+  user-select: none;
   -webkit-user-drag: none;
 }
