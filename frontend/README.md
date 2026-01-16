@@ -45,13 +45,13 @@ The flagship feature of the site, showcasing leadership with an elite interactiv
 
 ## 📁 Project Structure
 
-\`\`\`text
+```
 src/
 ├── assets/          # Compressed images for team/mentors
 ├── components/      # Reusable UI (Aurora, ProfileCard, PageTransition)
 ├── pages/           # Main route views (Homepage, TeamPage)
 └── App.jsx          # Route management
-\`\`\`
+```
 
 ---
 
