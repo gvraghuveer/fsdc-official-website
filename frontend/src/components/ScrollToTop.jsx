@@ -5,19 +5,9 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // This snaps the page to top instantly when the route changes
-    // It prevents the "scrolling up" animation on the old page
-    try {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "instant",
-      });
-    } catch (error) {
-      // Fallback for older browsers
-      window.scrollTo(0, 0);
-    }
-  }, [pathname]);
+    // Instantly reset scroll to the top-left corner
+    window.scrollTo(0, 0);
+  }, [pathname]); // Fires every time the URL path changes
 
   return null;
 };
