@@ -155,8 +155,8 @@ const Footer = () => {
                 className="opacity-60 group-hover:opacity-75 transition-opacity duration-700"
               ></iframe>
             </div>
-            <p className="mt-4 text-[10px] text-gray-600 uppercase tracking-widest font-semibold text-center md:text-left leading-relaxed max-w-[280px] md:max-w-none">
-              Rukmini Knowledge Park, Kattigenahalli, Yelahanka, Bengaluru
+            <p className="mt-4 mx-2 text-[9px] text-gray-600 uppercase tracking-widest font-semibold text-center md:text-left leading-relaxed max-w-[280px] md:max-w-none">
+              Reva University, Rukmini Knowledge Park, Kattigenahalli, Yelahanka, Bengaluru
             </p>
           </div>
         </div>
